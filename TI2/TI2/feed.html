@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUCHELP</title>
+    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="feed.html"><img src="./logo/PUCHELP.png" alt="PUCHELP"></a>
+        </div>
+        <div class="menu">
+            <a href="search.html">Search</a>
+            <a href="autenticacao.html">Autenticação</a>
+            <a href="criar-publi.html">+ Criar publicação</a>
+        </div>
+    </div>
+    <main>
+        <p id="publicacoes-container"></p>
+    
+        <script>
+            function criarPost(publicacao) {
+            var postContainer = document.createElement("div");
+            postContainer.classList.add("post-container");
+
+            var post = document.createElement("div");
+            post.classList.add("post");
+
+            var userHeader = document.createElement("div");
+            userHeader.classList.add("user-header");
+
+            var profileImg = document.createElement("img");
+            profileImg.classList.add("profile-img");
+            profileImg.setAttribute("src", "https://via.placeholder.com/50");
+            profileImg.setAttribute("alt", "Profile Image");
+
+            var username = document.createElement("a");
+            username.classList.add("username");
+            username.setAttribute("href", "perfil.html");
+            username.textContent = "nome_usuario";
+            var likeButton = document.createElement("button");
+            likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+            likeButton.classList.add("like-button");
+            likeButton.addEventListener("click", function() {
+            var icon = likeButton.querySelector("i");
+            icon.style.color = "red";
+             });
+
+
+
+            var commentButton = document.createElement("button");
+            commentButton.innerHTML = '<i class="fas fa-comment"></i>';
+            commentButton.classList.add("comment-button");
+            commentButton.addEventListener("click", function() {
+    // Cria um elemento textarea para permitir a digitação do comentário
+    var textarea = document.createElement("textarea");
+    textarea.placeholder = "Digite seu comentário aqui...";
+    textarea.classList.add("comment-textarea");
+
+    // Adiciona o campo de entrada de comentário ao post
+    commentsSection.appendChild(textarea);
+});
+
+            var commentsSection = document.createElement("div");
+            commentsSection.classList.add("comments");
+
+            userHeader.appendChild(profileImg);
+            userHeader.appendChild(username);
+
+            var publicacaoText = document.createElement("p");
+            publicacaoText.textContent = publicacao;
+
+            commentButton.addEventListener("click", function() {
+        // Cria um elemento textarea para permitir a digitação do comentário
+        var textarea = document.createElement("textarea");
+        textarea.placeholder = "Digite seu comentário aqui...";
+        textarea.classList.add("comment-textarea");
+
+        // Cria um botão de enviar
+        var sendButton = document.createElement("button");
+        sendButton.textContent = "Enviar";
+        sendButton.classList.add("send-button");
+
+        // Adiciona um evento de clique ao botão de enviar
+        sendButton.addEventListener("click", function() {
+            // Obtém o texto digitado no textarea
+            var commentText = textarea.value;
+            
+            // Cria um novo elemento de comentário
+            var newComment = document.createElement("div");
+            newComment.classList.add("comment");
+            
+            // Cria a estrutura do comentário (perfil + texto do comentário)
+            var profileImg = document.createElement("img");
+            profileImg.classList.add("profile-img");
+            profileImg.setAttribute("src", "https://via.placeholder.com/50");
+            profileImg.setAttribute("alt", "Profile Image");
+
+            var commentContent = document.createElement("div");
+
+            var username = document.createElement("a");
+            username.classList.add("username");
+            username.setAttribute("href", "perfil.html");
+            username.textContent = "nome_usuario";
+
+            var commentTextElement = document.createElement("p");
+            commentTextElement.textContent = commentText;
+
+            commentContent.appendChild(username);
+            commentContent.appendChild(commentTextElement);
+
+            newComment.appendChild(profileImg);
+            newComment.appendChild(commentContent);
+
+            // Adiciona o novo comentário à seção de comentários
+            commentsSection.appendChild(newComment);
+
+            // Limpa o conteúdo da caixa de texto do comentário após o envio
+            textarea.value = "";
+        });
+
+        // Adiciona o campo de entrada de comentário e o botão de enviar ao post
+        commentsSection.appendChild(textarea);
+        commentsSection.appendChild(sendButton);
+    });
+
+            post.appendChild(userHeader);
+            post.appendChild(publicacaoText);
+            post.appendChild(likeButton);
+            post.appendChild(commentButton);
+            post.appendChild(commentsSection);
+
+
+            postContainer.appendChild(post);
+
+            return postContainer;
+        }
+
+            var publicacoes = localStorage.getItem("publicacoes");
+            if (publicacoes) {
+                publicacoes = JSON.parse(publicacoes);
+                var publicacoesContainer = document.getElementById("publicacoes-container");
+                for (var i = publicacoes.length - 1; i >= 0; i--) {
+                    var post = criarPost(publicacoes[i]);
+                    publicacoesContainer.appendChild(post);
+                }
+            }
+            
+        </script>
+
+        <div class="post-container">
+            <div class="post">
+                <div class="user-header">
+                    <img class="profile-img" src="https://via.placeholder.com/50" alt="Profile Image">
+                    <a href="perfil.html" class="username">nome_usuario</a>
+                </div>
+                <img src="https://via.placeholder.com/600x400" alt="Post Image">
+                <div class="comments">
+                    <div class="comment">
+                        <img class="profile-img" src="https://via.placeholder.com/50" alt="Profile Image">
+                        <div>
+                            <a href="perfil.html" class="username">nome_usuario</a>
+                            <p>Great post!</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <img class="profile-img" src="https://via.placeholder.com/50" alt="Profile Image">
+                        <div>
+                            <a href="perfil.html" class="username">nome_usuario</a>
+                            <p>Nice photo!</p>
+                        </div>
+                    </div>
+                    <!-- Adicione mais comentários conforme necessário -->
+                </div>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post">
+                <div class="user-header">
+                    <img class="profile-img" src="https://via.placeholder.com/50" alt="Profile Image">
+                    <a href="perfil.html" class="username">nome_usuario</a>
+                </div>
+                <p>Just had a great day at the beach! 🏖️ #BeachLife #Sunshine</p>
+                <div class="comments">
+                    <div class="comment">
+                        <img class="profile-img" src="https://via.placeholder.com/50" alt="Profile Image">
+                        <div>
+                            <a href="perfil.html" class="username">nome_usuario</a>
+                            <p>Looks amazing!</p>
+                        </div>
+                    </div>
+                    <!-- Adicione mais comentários conforme necessário -->
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

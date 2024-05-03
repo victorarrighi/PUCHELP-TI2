@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - PUCHELP</title>
+    <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="feed.html"><img src="./logo/PUCHELP.png" alt="PUCHELP"></a>
+        </div>
+        <div class="menu">
+            <a href="search.html">Search</a>
+            <a href="autenticacao.html">Autenticação</a>
+            <a href="criar-publi.html">+ Criar publicação</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Registro - PUCHELP</h2>
+        <form action="#" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" required>
+
+            <label for="curso">Curso:</label>
+            <select id="curso" name="curso" required>
+                <option value="">Selecione seu curso</option>
+                <option value="Engenharia Civil">Engenharia Civil</option>
+                <option value="Direito">Direito</option>
+                <option value="Medicina">Medicina</option>
+                <!-- Adicione outras opções de curso conforme necessário -->
+            </select>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <input type="submit" value="Registrar">
+        </form>
+        <div class="signin">
+            Já possui uma conta? <a href="#" style="color: #3897f0; text-decoration: none;">Faça login</a>
+        </div>
+    </div>
+    <script src="registro.js"></script>
+</body>
+</html>
